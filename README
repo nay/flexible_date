@@ -3,7 +3,7 @@ FlexibleDate
 
 FlexibleDate plugin provides the better handling of date columns.
 With flexible_date_select helper, you can receive invalid data such as {:year => '2010', :month => '', :day => '3'} and
-validate it automatically, while you can also keep that value for error messages.
+validate it automatically, while you can also keep that value for the edit/new view to show the user what is wrong.
 
 You can get the string value such as '2009-01-01' if you specify the options to flexible_date_column.
 (But this plugin does not provide the helper for the string.)
