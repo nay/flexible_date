@@ -1,0 +1,35 @@
+FlexibleDate
+============
+
+FlexibleDate plugin provides the better handling of date columns.
+With flexible_date_select helper, you can receive invalid data such as {:year => '2010', :month => '', :day => '3'} and
+validate it automatically, while you can also keep that value for error messages.
+
+You can get the string value such as '2009-01-01' if you specify the options to flexible_date_column.
+(But this plugin does not provide the helper for the string.)
+
+This plugin has been tested on Rails 2.3.3.
+
+Example
+=======
+
+It your model class which has the target date column, you can write like this;
+
+class YourModel < ActiveRecord::Base
+
+  flexible_date_column :started_on # You have started_on column which represents a date.
+
+end
+
+This will add some methods to you model class, some of them are used as callback methods, so that you can set a hash to started_on.
+Note that this hash must be able to respond to symbol keys.
+
+On the view side, you can use flexible_date_select instead of date_select. This helper holds invalid date values so that the user can see what is wrong.
+This plugin does not support non-builder type helper now, but there is a plan to add it later (or please add it).
+
+  <% form_for :your_model do |f| %>
+    <%= f.flexible_date_select :started_on %>
+  <% end %>
+
+
+Copyright (c) 2010 nay3 (Yasuko Ohba), released under the MIT license
