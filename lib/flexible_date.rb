@@ -9,8 +9,6 @@ module FlexibleDate
 
         define_method cast_method do
           casted_date = self.class.flexible_value_to_date(send(column_name), options)
-          p "#{cast_method} casted_date = #{casted_date}"
-          p "!!!!!!"
           send("#{column_name}=", casted_date) if casted_date
         end
 
@@ -18,7 +16,7 @@ module FlexibleDate
         validate validation_method
 
         define_method validation_method do
-          errors.add(column_name, :invalid) if send(column_name) && !send(column_name).kind_of?(Date)
+          errors.add(column_name, :invalid) if send(column_name) && !send(column_name).kind_of?(Date) && !send(column_name).kind_of?(Time)
         end
 
         define_method "#{column_name}=" do |value|
